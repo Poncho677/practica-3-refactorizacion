@@ -31,7 +31,7 @@ def test_carpeta_con_archivo_tamanio_0():
     
 def test_constructor_archivo_vacio():
     with pytest.raises(ValueError):
-        Archivo("texto.txt", 0)
+        Archivo("", 120)
 
 def test_constructor_archivo_negativo():
     with pytest.raises(ValueError):
