@@ -25,3 +25,23 @@ Problema 3: El programa depende directamente del correo viejo.
 - Dónde aparece: en enviarResultado, que crea un CorreoLegacy y llama a send_email.
 - Qué cambio sería difícil: si cambiamos de proveedor de correo y su método se llama distinto, hay que reescribir enviarResultado. Tampoco se puede probar sin usar el correo real.
 - Qué debería hacerse responsable: una interfaz Notificador con el método enviar(), y una clase AdaptadorCorreo que traduzca enviar() a send_email() (patrón Adapter).
+
+## Cambios realizados
+
+### Etapa 3: Composite
+- Se creó la clase Elemento. Todo Elemento sabe decir su tamaño con obtener_tamanio().
+- Archivo y Carpeta usan Elemento.
+- Carpeta ahora tiene una sola lista (elementos) en lugar de dos.
+- El cálculo del tamaño pasó de la función suelta a un método de Carpeta.
+  Ya no se pregunta si algo es archivo o carpeta: cada uno responde su
+  propio tamaño.
+
+### Etapa 4: Factory Method
+- Se creó CreadorArchivo, con dos creadores: CreadorPDF y CreadorTexto.
+- Cada creador sabe construir un solo tipo de archivo y lo devuelve.
+- Se borró la función agregar_archivo y su if/elif. Ahora la carpeta solo guarda archivos; ya no los crea.
+- Si hubiera un tercer tipo de archivo, solo se agregaría un creador nuevo, sin tocar el código que ya existe.
+
+### Cambio extra del equipo (no es parte de la refactorización)
+- Se agregó validación: Elemento no acepta nombres vacíos y Archivo no acepta tamaños negativos (lanzan ValueError).
+- Esto no cambia el ejemplo de la práctica, porque todos sus nombres y tamaños son válidos. Se agregó con sus pruebas.
