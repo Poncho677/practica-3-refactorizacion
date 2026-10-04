@@ -1,14 +1,14 @@
-# ANALISIS
+# ANALISIS - Práctica 3
 
-## 1. Que hace cada parte del codigo inicial
+## 1. Qué hace cada parte del código inicial
 
-1. El método agregarArchivo se encarga de:  
+1. El método agregar_archivo se encarga de:  
 Recibir una instancia de Carpeta junto con el tipo, nombre y tamaño de un archivo, decidir qué tipo de objeto crear (ArchivoPDF o ArchivoTexto), e insertarlo directamente en la lista de archivos de esa carpeta.
 
-2. Method obtenerTamanio se encarga de:  
+2. El método obtener_tamanio se encarga de:
 Sumar primero el tamaño de todos los archivos contenidos en el nivel actual y luego recorrer e invocar la misma función sobre cada una de las subcarpetas de su lista.
 
-3. El método enviarResultado se encarga de:  
+3. El método enviar_resultado se encarga de:
 Calcular el tamaño total de la carpeta, crear el correo (CorreoLegacy) y mandar el mensaje al destinatario.
 
 ## 2. Tres problemas concretos
@@ -28,7 +28,65 @@ Problema 3: El programa depende directamente del correo viejo.
 - Qué cambio sería difícil: si cambiamos de proveedor de correo y su método se llama distinto, hay que reescribir enviarResultado. Tampoco se puede probar sin usar el correo real.
 - Qué debería hacerse responsable: una interfaz Notificador con el método enviar(), y una clase AdaptadorCorreo que traduzca enviar() a send_email() (patrón Adapter).
 
-## Cambios realizados
+## 3. Etapa 6: Comprobación de la solución
+
+### 3.1 Los cinco casos de la etapa 2
+
+Se ejecutaron con `pytest -v` en la rama main (código refactorizado).
+"Antes" son los resultados del commit ee749bd (código original).
+
+1. Carpeta vacía
+   - Entrada: carpeta sin archivos ni subcarpetas
+   - Esperado: 0
+   - Obtenido antes: 0 | Obtenido después: 0
+   - Coincide: sí (OK)
+
+2. Carpeta con un PDF de 120
+   - Entrada: practica.pdf (120)
+   - Esperado: 120
+   - Obtenido antes: 120 | Obtenido después: 120
+   - Coincide: sí (OK)
+
+3. Carpeta con PDF de 120 y texto de 80
+   - Entrada: practica.pdf (120) y notas.txt (80)
+   - Esperado: 200
+   - Obtenido antes: 200 | Obtenido después: 200
+   - Coincide: sí (OK)
+
+4. Ejemplo completo con subcarpeta de 50
+   - Entrada: MyP con practica.pdf (120), notas.txt (80) y la subcarpeta
+     Ejemplos con ejemplo.txt (50)
+   - Esperado: 250
+   - Obtenido antes: 250 | Obtenido después: 250
+   - Coincide: sí (OK)
+
+5. Carpeta con un archivo de tamaño 0
+   - Entrada: texto.txt (0)
+   - Esperado: 0
+   - Obtenido antes: 0 | Obtenido después: 0
+   - Coincide: sí (OK)
+
+Resultado de pytest -v después de refactorizar: 9 passed (los cinco casos anteriores, las dos pruebas de validación y las dos de los creadores).
+
+Nota sobre las pruebas de validación: en el código original dieron FALLO (DID NOT RAISE ValueError) porque no existía la validación de nombres vacíos ni de tamaños negativos. Se agregó como cambio extra del equipo y ahora dan OK. Los cinco casos de tamaño dieron OK antes y después.
+
+### 3.2 Ejecución de main
+
+Se ejecutó `python main.py` antes y después de refactorizar.
+
+Salida antes (commit ee749bd):
+
+    250
+    Para: profesor@universidad.edu
+    Tamanio total: 250
+
+Salida después (rama main):
+
+    250
+    Para: profesor@universidad.edu
+    Tamanio total: 250
+
+Coincide: sí. El tamaño total y el correo simulado conservan los resultados originales.
 
 ### Etapa 3: Composite
 - Se creó la clase Elemento. Todo Elemento sabe decir su tamaño con obtener_tamanio().
@@ -59,6 +117,5 @@ Problema 3: El programa depende directamente del correo viejo.
 ## 6. Respuestas finales
 
 ¿Qué responsabilidad se movió a cada clase?
-
 
 ¿Qué permaneció igual para quien usa el programa?
