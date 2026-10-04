@@ -7,7 +7,7 @@ class CorreoLegacy:
         print("Para: " + to)
         print(body)
 
-def enviar_resultado(carpeta, destino):
+def enviar_resultado(carpeta, destino, notificador):
     mensaje = "Tamanio total: " + str(carpeta.obtener_tamanio())
     notificador.enviar(destino, mensaje)
 
