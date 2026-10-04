@@ -1,0 +1,5 @@
+class CorreoLegacy:
+    def send_email(self, to, destiny):
+        if to.scrip() == "":
+            raise(ValueError)
+        if to.find("@") == -1

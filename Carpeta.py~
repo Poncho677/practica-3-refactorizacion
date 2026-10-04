@@ -1,0 +1,4 @@
+class Carpeta(elemento):
+
+    def __init__(self, nombre):
+        super().__init__(nombre)

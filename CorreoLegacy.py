@@ -1,0 +1,16 @@
+import carpeta
+
+#Creando clase CorreoLegacy para poder enviar correos
+
+class CorreoLegacy:
+
+    '''Método send_email que envía un correo
+    parámetro: carpeta, destiny
+    carpeta es la carpeta que contiene los archivos y nos indica el peso de esta
+    destiny es el correo destino al cual se envía la carpeta
+    Salta error si la carpeta es vacía o si el destino es vacío o si el destino no es un correo'''
+    
+    def send_email(carpeta, destiny):
+        if destiny.strip() == "" or destiny.find("@") == -1 or carpeta.strip() == "":
+            raise(ValueError)
+        print("Para: " + destiny, "Tamaño: " + carpeta.obtener_tamanio())

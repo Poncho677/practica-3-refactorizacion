@@ -1,0 +1,5 @@
+class Archivo(elemento):
+
+    def __init__(self, nombre, tamanio):
+        super().__int__(nombre, tamanio)
+        
