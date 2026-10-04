@@ -1,5 +1,7 @@
 # ANALISIS
 
+## 1. Que hace cada parte del codigo inicial
+
 1. El método agregarArchivo se encarga de:  
 Recibir una instancia de Carpeta junto con el tipo, nombre y tamaño de un archivo, decidir qué tipo de objeto crear (ArchivoPDF o ArchivoTexto), e insertarlo directamente en la lista de archivos de esa carpeta.
 
@@ -9,7 +11,7 @@ Sumar primero el tamaño de todos los archivos contenidos en el nivel actual y l
 3. El método enviarResultado se encarga de:  
 Calcular el tamaño total de la carpeta, crear el correo (CorreoLegacy) y mandar el mensaje al destinatario.
 
-4. Identifiquen tres problemas concretos. Para cada uno indiquen: dónde aparece, qué cambio sería difícil y qué clase o interfaz podría hacerse responsable.  
+## 2. Tres problemas concretos
 
 Problema 1: La carpeta guarda archivos y subcarpetas en dos listas separadas.
 - Dónde aparece: en la clase Carpeta (las listas archivos y subcarpetas) y en obtenerTamanio, que tiene un for para cada lista.
@@ -42,5 +44,21 @@ Problema 3: El programa depende directamente del correo viejo.
 - Se borró la función agregar_archivo y su if/elif. Ahora la carpeta solo guarda archivos; ya no los crea.
 - Si hubiera un tercer tipo de archivo, solo se agregaría un creador nuevo, sin tocar el código que ya existe.
 
-### Cambio extra del equipo
-- Se agregó validación: Elemento no acepta nombres vacíos y Archivo no acepta tamaños negativos (lanzan ValueError).
+### Etapa 5: Adapter
+- Se creo la interfaz Notificador con el metodo enviar(destino, mensaje).
+- Se creo AdaptadorCorreo, que guarda un CorreoLegacy y traduce enviar() a send_email(). CorreoLegacy no se modifico.
+- enviar_resultado ahora recibe un Notificador en lugar de crear el correo directamente. Si cambiamos de proveedor de correo, solo se agrega o cambia un adaptador.
+  
+### Cambios extra del equipo
+- Validaciones que lanzan ValueError: Elemento no acepta nombres vacios ni None, Archivo no acepta tamanios negativos, Carpeta.agregar no acepta None y AdaptadorCorreo no acepta un destino vacio o sin "@".
+- Ninguna cambia el ejemplo de la practica, porque todos sus nombres, tamanios y destino son validos.
+- Pruebas extra: dos de validacion (nombre vacio y tamanio negativo) y dos de los creadores.
+
+## 5. Diagrama final
+
+## 6. Respuestas finales
+
+¿Qué responsabilidad se movió a cada clase?
+
+
+¿Qué permaneció igual para quien usa el programa?
