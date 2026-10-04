@@ -1,5 +1,6 @@
 from carpeta import Carpeta
 from creador_archivo import CreadorPDF, CreadorTexto
+from adaptador_correo import AdaptadorCorreo
 
 class CorreoLegacy:
     def send_email(self, to, body):
@@ -7,8 +8,8 @@ class CorreoLegacy:
         print(body)
 
 def enviar_resultado(carpeta, destino):
-    correo = CorreoLegacy()
-    correo.send_email(destino, "Tamanio total: " + str(carpeta.obtener_tamanio()))
+    mensaje = "Tamanio total: " + str(carpeta.obtener_tamanio())
+    notificador.enviar(destino, mensaje)
 
 def main():
     creador_pdf = CreadorPDF()
@@ -23,7 +24,8 @@ def main():
     clase.agregar(ejemplos)
 
     print(clase.obtener_tamanio())
-    enviar_resultado(clase, "profesor@universidad.edu")
+    notificador = AdaptadorCorreo(CorreoLegacy())
+    enviar_resultado(clase, "profesor@universidad.edu", notificador)
 
 if __name__ == "__main__":
     main()
