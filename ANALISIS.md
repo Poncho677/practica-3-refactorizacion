@@ -1,4 +1,4 @@
-# ANALISIS Práctica 3
+# ANALISIS
 
 1. El método agregarArchivo se encarga de:  
 Recibir una instancia de Carpeta junto con el tipo, nombre y tamaño de un archivo, decidir qué tipo de objeto crear (ArchivoPDF o ArchivoTexto), e insertarlo directamente en la lista de archivos de esa carpeta.
@@ -42,6 +42,5 @@ Problema 3: El programa depende directamente del correo viejo.
 - Se borró la función agregar_archivo y su if/elif. Ahora la carpeta solo guarda archivos; ya no los crea.
 - Si hubiera un tercer tipo de archivo, solo se agregaría un creador nuevo, sin tocar el código que ya existe.
 
-### Cambio extra del equipo (no es parte de la refactorización)
+### Cambio extra del equipo
 - Se agregó validación: Elemento no acepta nombres vacíos y Archivo no acepta tamaños negativos (lanzan ValueError).
-- Esto no cambia el ejemplo de la práctica, porque todos sus nombres y tamaños son válidos. Se agregó con sus pruebas.
