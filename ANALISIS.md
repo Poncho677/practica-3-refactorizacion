@@ -114,6 +114,8 @@ Coincide: sí. El tamaño total y el correo simulado conservan los resultados or
 
 ## 5. Diagrama final
 
+![Diagrama final](diagrama.png)
+
 ## 6. Respuestas finales
 
 ¿Qué responsabilidad se movió a cada clase?
