@@ -1,3 +1,5 @@
+from elemento import Elemento
+
 class Carpeta(Elemento):
 
     def __init__(self, nombre):
