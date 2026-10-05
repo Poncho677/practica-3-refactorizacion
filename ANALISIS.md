@@ -119,5 +119,12 @@ Coincide: sí. El tamaño total y el correo simulado conservan los resultados or
 ## 6. Respuestas finales
 
 ¿Qué responsabilidad se movió a cada clase?
+- elemento.py: Se responsabiliza de guardar el nombre del elemento, checar que no esté vacío y definir la regla para pedir el tamaño.
+- archivo.py: Guarda el tamaño del archivo, valida que sea de valor válido y lo devuelve. ArchivoPDF y ArchivoTexto son los tipos de archivo específicos.
+- carpeta.py: Guarda la lista de archivos y subcarpetas que tiene adentro, checa que no le agreguen elementos nulos y suma el tamaño de todo lo que contiene.
+- creador_archivo.py: Junto con CreadorPDF y CreadorTexto, se encargan de crear los archivos para evitar que se usen condicionales en el código principal.
+- notificador.py: Define la forma estándar en la que el programa debe enviar notificaciones.
+- adaptador_correo.py: Traduce el método de envío (enviar()) al método viejo (send_email()) de CorreoLegacy y revisa que el correo tenga un formato válido.
 
 ¿Qué permaneció igual para quien usa el programa?
+- El cálculo del tamaño total de las carpetas y archivos da el mismo resultado, las pruebas siguen pasando con los mismos datos y el correo muestra en la pantalla la misma salida (Para: profesor@universidad.edu y Tamanio total: 250).
